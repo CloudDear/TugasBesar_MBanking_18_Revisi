@@ -44,16 +44,8 @@ class HomeActivity : AppCompatActivity() {
 
                 }
                 R.id.logout -> {
-                    val mBuilder = AlertDialog.Builder(this@HomeActivity)
-                        .setTitle("Confirm")
-                        .setMessage("Are you sure you want to exit?")
-                        .setPositiveButton("Yes", object : DialogInterface.OnClickListener{
-                            override fun onClick(dialogInterface: DialogInterface, i: Int){
-                                exitProcess(0)
-                            }
-                        })
-                        .setNegativeButton("No", null)
-                        .show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
                 }
             }
             true

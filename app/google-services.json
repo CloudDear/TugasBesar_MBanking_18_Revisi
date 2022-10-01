@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "322036876629",
+    "project_id": "tugasbesar-mbanking-18",
+    "storage_bucket": "tugasbesar-mbanking-18.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322036876629:android:679504033bc9f8398a9bdc",
+        "android_client_info": {
+          "package_name": "com.example.tugasbesar_mbanking_18"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "322036876629-lmnj589kjacblek7j7lq0dmk9oti0d7b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYLt-YxWgpkMgDVmDDVWmqc_gBJ1zQzrM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "322036876629-lmnj589kjacblek7j7lq0dmk9oti0d7b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
