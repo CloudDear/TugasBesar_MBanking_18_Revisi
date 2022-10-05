@@ -1,12 +1,10 @@
 package com.example.tugasbesar_mbanking_18
 
-
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_user_profile.*
 
 class UserProfile : AppCompatActivity() {
@@ -36,8 +34,6 @@ class UserProfile : AppCompatActivity() {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
-
-
 
     }
 }

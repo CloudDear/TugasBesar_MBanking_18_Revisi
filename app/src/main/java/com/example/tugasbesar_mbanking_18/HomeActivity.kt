@@ -19,7 +19,6 @@ class HomeActivity : AppCompatActivity() {
 
         val fragmentHome = HomeFragment()
         val fragmentTransaksi = FragmentTransaksi()
-        val fragmentProfile = ProfileFragment()
         val fragmentMemo = FragmentMemo()
 
         bottomNav = findViewById(R.id.bottomNavigation)

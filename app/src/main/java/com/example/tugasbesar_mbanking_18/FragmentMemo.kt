@@ -23,9 +23,6 @@ class FragmentMemo : Fragment() {
     val db by lazy {MemoDB(requireActivity())}
     lateinit var memoAdapter: MemoAdapter
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

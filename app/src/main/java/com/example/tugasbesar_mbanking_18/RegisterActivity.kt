@@ -16,8 +16,13 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import com.example.tugasbesar_mbanking_18.databinding.ActivityRegisterBinding
+import com.example.tugasbesar_mbanking_18.room.User
+import com.example.tugasbesar_mbanking_18.room.UserDB
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class RegisterActivity : AppCompatActivity() {
