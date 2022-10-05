@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:backgroundTint="#D385F4"
-            android:text="Write Memo"
+            android:text="TAMBAH DAFTAR TRANSFER"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
