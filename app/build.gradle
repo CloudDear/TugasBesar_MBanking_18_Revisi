@@ -39,6 +39,7 @@ android {
     viewBinding{
         enabled = true
     }
+    namespace 'com.example.tugasbesar_mbanking_18'
 }
 
 dependencies {
