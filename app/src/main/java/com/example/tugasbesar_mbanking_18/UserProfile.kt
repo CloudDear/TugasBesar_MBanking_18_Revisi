@@ -35,5 +35,12 @@ class UserProfile : AppCompatActivity() {
             startActivity(intent)
         }
 
+        btnCamera.setOnClickListener{
+            val intent = Intent(this, CameraActivity::class.java)
+            startActivity(intent)
+        }
+
+
+
     }
 }
