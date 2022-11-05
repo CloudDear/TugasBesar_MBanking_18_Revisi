@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<ScrollView
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<LinearLayout
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -12,6 +16,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="350dp">
+
+        <Button
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:id="@+id/btnCamera"
+            android:layout_marginLeft="320dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_baseline_camera_alt_24"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -206,9 +218,10 @@
         android:id="@+id/btnEditProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="EDIT"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:text="EDIT" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -217,3 +230,4 @@
         android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>
+</ScrollView>
