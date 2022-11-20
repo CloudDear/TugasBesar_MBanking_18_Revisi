@@ -19,7 +19,7 @@ class HomeActivity : AppCompatActivity() {
 
         val fragmentHome = HomeFragment()
         val fragmentTransaksi = FragmentTransaksi()
-        val fragmentMemo = FragmentMemo()
+//        val fragmentMemo = FragmentMemo()
 
         bottomNav = findViewById(R.id.bottomNavigation)
 
@@ -39,7 +39,8 @@ class HomeActivity : AppCompatActivity() {
 
                 }
                 R.id.memo -> {
-                    loadFragment(fragmentMemo)
+                    val intent = Intent(this, MemoActivity::class.java)
+                    startActivity(intent)
 
                 }
                 R.id.logout -> {
