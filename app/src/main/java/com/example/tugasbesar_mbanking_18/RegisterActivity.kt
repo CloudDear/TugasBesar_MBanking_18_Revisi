@@ -11,18 +11,22 @@ import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import com.example.tugasbesar_mbanking_18.databinding.ActivityRegisterBinding
-import com.example.tugasbesar_mbanking_18.room.User
-import com.example.tugasbesar_mbanking_18.room.UserDB
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.util.Objects
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -39,12 +43,8 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         supportActionBar?.hide()
         setContentView(binding.root)
-
         createNotificationChannel()
-
-
         sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
-
 
         binding.btnClear.setOnClickListener(){
             binding.inputUsername.setText("")
@@ -70,6 +70,26 @@ class RegisterActivity : AppCompatActivity() {
             val email : String = binding.inputEmail.editableText.toString()
             val tanggalLahir : String = binding.inputTanggalLahir.editableText.toString()
             val nomorTelepon : String = binding.inputNomorTelepon.editableText.toString()
+
+            RClient.instances.createDataUser(username, password, email, tanggalLahir, nomorTelepon).enqueue(object : Callback<ResponseCreate>{
+                override fun onResponse(
+                    call: Call<ResponseCreate>,
+                    response: Response<ResponseCreate>
+                ) {
+                    if(response.isSuccessful){
+                        Toast.makeText(applicationContext,"${response.body()?.pesan}",
+                        Toast.LENGTH_LONG).show()
+                        finish()
+                    }else{
+                        val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
+
+                    }
+                }
+
+                override fun onFailure(call: Call<ResponseCreate>, t: Throwable) {
+
+                }
+            })
 
             if(username.isEmpty()) {
                 binding.inputUsername.setError("Username must be filled with text")

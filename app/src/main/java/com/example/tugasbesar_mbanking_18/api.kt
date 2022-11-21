@@ -4,6 +4,7 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface api {
+    // MEMO
     @GET("memo/{cari}")
     fun getData(@Path("cari") cari:String? = null): Call<ResponseDataMemo>
 
@@ -25,4 +26,20 @@ interface api {
         @Field("titlememo") titlememo:String?,
         @Field("bodymemo") bodymemo:String?,
     ): Call<ResponseCreate>
+
+    // USER
+    @GET("user/{cari}")
+    fun getAllUser(@Path("cari") cari:String? = null) : Call<ResponseDataUser>
+
+
+    @FormUrlEncoded
+    @POST("user")
+    fun createDataUser(
+        @Field("username") username:String?,
+        @Field("password") password:String?,
+        @Field("email") email:String?,
+        @Field("tglLahir") tglLahir:String?,
+        @Field("noTelp") noTelp:String?,
+    ): Call<ResponseCreate>
+
 }

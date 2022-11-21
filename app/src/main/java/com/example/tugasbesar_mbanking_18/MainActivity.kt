@@ -15,16 +15,18 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.tugasbesar_mbanking_18.databinding.ActivityMainBinding
-import com.example.tugasbesar_mbanking_18.room.User
-import com.example.tugasbesar_mbanking_18.room.UserDB
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {
@@ -37,6 +39,8 @@ class MainActivity : AppCompatActivity() {
 
     private val CHANNEL_ID_1 = "channel_notification_01"
     private val notificationId1 = 10
+    private val listUser = ArrayList<UserData>()
+    private val filterUser = ArrayList<UserData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,20 +68,11 @@ class MainActivity : AppCompatActivity() {
                 checkLogin = false
             }
 
-            if(username != vUsername){
-                binding.inputLayoutUsername.setError("Username not valid")
-                checkLogin = false
-            }
-
             if (password.isEmpty()) {
                 binding.inputLayoutPassword.setError("Password must be filled with text")
                 checkLogin = false
             }
 
-            if(password != vPassword){
-                binding.inputLayoutPassword.setError("Password not valid")
-                checkLogin = false
-            }
             sendNotification2()
 
             if (username == vUsername && password == vPassword) checkLogin = true
@@ -116,6 +111,36 @@ class MainActivity : AppCompatActivity() {
         vUsername = name.toString()
         vPassword = pass.toString()
     }
+
+    /** fun getAllUser() : ArrayList<UserData> {
+        var checkLogin = false
+        RClient.instances.getAllUser().enqueue(object : Callback<ResponseDataUser>{
+            override fun onResponse(
+                call: Call<ResponseDataUser>,
+                response: Response<ResponseDataUser>
+            ) {
+                if(response.isSuccessful){
+                    listUser.clear()
+                    filterUser.clear()
+                    response.body()?.let {
+                        listUser.addAll(it.data)
+                        listUser.find { it.nameUser ==  binding.inputLayoutUsername.getEditText()?.toString() && it.passwordUser == binding.inputLayoutPassword.getEditText()?.toString()} ?.let {
+                                it1 -> filterUser.add(it1) }
+
+                        if(filterUser.isEmpty()){
+                            checkLogin = false
+                        }else{
+                            checkLogin = true
+                            startActivity(Intent(this@MainActivity, HomeActivity::class.java))
+                        }
+                    }
+                }
+            }
+            override fun onFailure(call: Call<ResponseDataUser>, t: Throwable) {
+            }
+        })
+    }
+    **/
 
     private fun createNotificationChannel(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
