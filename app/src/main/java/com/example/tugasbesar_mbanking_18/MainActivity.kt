@@ -8,6 +8,8 @@ import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import java.util.ArrayList
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -27,6 +29,8 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.Tag
+import java.lang.reflect.Method
 
 
 class MainActivity : AppCompatActivity() {
@@ -72,14 +76,11 @@ class MainActivity : AppCompatActivity() {
                 binding.inputLayoutPassword.setError("Password must be filled with text")
                 checkLogin = false
             }
-
-            sendNotification2()
-
-            if (username == vUsername && password == vPassword) checkLogin = true
-            if (!checkLogin) return@OnClickListener
-            val moveHome = Intent(this@MainActivity, HomeActivity::class.java)
-            sendNotification1()
-            startActivity(moveHome)
+            getAllUser()
+//            if (username == vUsername && password == vPassword) checkLogin = true
+//            if (!checkLogin) return@OnClickListener
+//            val moveHome = Intent(this@MainActivity, HomeActivity::class.java)
+//            startActivity(moveHome)
         })
 
         binding.textViewRegister.setOnClickListener{
@@ -112,6 +113,38 @@ class MainActivity : AppCompatActivity() {
         vPassword = pass.toString()
     }
 
+    fun getAllUser() {
+        val username: String = binding.inputLayoutUsername.getEditText()?.getText().toString()
+        val password: String = binding.inputLayoutPassword.getEditText()?.getText().toString()
+        RClient.instances.getAllUser(username).enqueue(object :Callback<ResponseDataUser>{
+            override fun onResponse(
+                call: Call<ResponseDataUser>,
+                response: Response<ResponseDataUser>
+            ) {
+                if(response.isSuccessful){
+                    listUser.clear()
+                    filterUser.clear()
+                    response.body()?.let {
+                        listUser.addAll(it.data)
+                        listUser.find { it.nameUser == username && it.passwordUser == password }
+                            ?.let { it1 -> filterUser.add(it1) }
+
+                        if (filterUser.isEmpty()){
+                            sendNotification2()
+                        }else{
+                            startActivity(Intent(this@MainActivity, HomeActivity::class.java))
+                            sendNotification1()
+                        }
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseDataUser>, t: Throwable) {
+
+            }
+        })
+    }
+
     /** fun getAllUser() : ArrayList<UserData> {
         var checkLogin = false
         RClient.instances.getAllUser().enqueue(object : Callback<ResponseDataUser>{
@@ -126,7 +159,6 @@ class MainActivity : AppCompatActivity() {
                         listUser.addAll(it.data)
                         listUser.find { it.nameUser ==  binding.inputLayoutUsername.getEditText()?.toString() && it.passwordUser == binding.inputLayoutPassword.getEditText()?.toString()} ?.let {
                                 it1 -> filterUser.add(it1) }
-
                         if(filterUser.isEmpty()){
                             checkLogin = false
                         }else{

@@ -28,8 +28,9 @@ interface api {
     ): Call<ResponseCreate>
 
     // USER
-    @GET("user/{cari}")
-    fun getAllUser(@Path("cari") cari:String? = null) : Call<ResponseDataUser>
+    @GET("user/{username}")
+    fun getAllUser(
+        @Path("username") username:String? = null) : Call<ResponseDataUser>
 
 
     @FormUrlEncoded
