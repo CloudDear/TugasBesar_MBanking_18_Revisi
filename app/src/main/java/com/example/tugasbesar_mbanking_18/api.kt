@@ -33,6 +33,10 @@ interface api {
         @Path("username") username:String? = null) : Call<ResponseDataUser>
 
 
+    @GET("user/{userId}")
+    fun getUserId(
+        @Path("userId") userId:Int? = null) : Call<ResponseDataUser>
+
     @FormUrlEncoded
     @POST("user")
     fun createDataUser(
@@ -41,6 +45,16 @@ interface api {
         @Field("email") email:String?,
         @Field("tglLahir") tglLahir:String?,
         @Field("noTelp") noTelp:String?,
+    ): Call<ResponseCreate>
+
+    @FormUrlEncoded
+    @PUT("user/{userId}")
+    fun updateDataUser(
+        @Path("userId") userId:Int?,
+        @Field("username") username:String?,
+        @Field("email") email:String?,
+        @Field("noTelp") noTelp:String?,
+        @Field("tglLahir") tglLahir:String?,
     ): Call<ResponseCreate>
 
 }

@@ -8,19 +8,23 @@ import android.os.Bundle
 import com.example.tugasbesar_mbanking_18.databinding.ActivityEditProfileBinding
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.activity_register.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class EditProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditProfileBinding
-    lateinit var sharedPreferences: SharedPreferences
-
+    lateinit var sharePref: SharedPreferences
+    private  val listUser = ArrayList<UserData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+
+        sharePref = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
 
         binding.buttonSaveProfile.setOnClickListener{
 
@@ -31,6 +35,7 @@ class EditProfileActivity : AppCompatActivity() {
             val emailBaru : String = binding.editEmail.editableText.toString()
             val tanggalLahirBaru : String = binding.editBirthDate.editableText.toString()
             val nomorTeleponBaru : String = binding.editPhoneNumber.editableText.toString()
+            val idTemp = sharePref.getInt("USERID", 0)
 
             if(usernameBaru.isEmpty()) {
                 binding.editUserName.setError("Username must be filled with text")
@@ -57,7 +62,22 @@ class EditProfileActivity : AppCompatActivity() {
                 val phoneNumber: String = edit_phoneNumber.text.toString()
                 val birthDate: String = edit_birthDate.text.toString()
 
-                val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                RClient.instances.updateDataUser(idTemp, usernameBaru, emailBaru, nomorTeleponBaru, tanggalLahirBaru).enqueue(object : Callback<ResponseCreate>{
+                    override fun onResponse(
+                        call: Call<ResponseCreate>,
+                        response: Response<ResponseCreate>
+                    ) {
+                        if(response.isSuccessful){
+                            finish()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ResponseCreate>, t: Throwable) {
+
+                    }
+                })
+
+                val editor: SharedPreferences.Editor = sharePref.edit()
                 editor.putString("NAME", name)
                 editor.putString("EMAIL", email)
                 editor.putString("PHONENUMBER", phoneNumber)
@@ -76,4 +96,20 @@ class EditProfileActivity : AppCompatActivity() {
 
 
     }
+
+//    fun getDataUserDetail(id:Int){
+//        RClient.instances.getUserId(id).enqueue(object : Callback<ResponseDataUser>{
+//            override fun onResponse(
+//                call: Call<ResponseDataUser>,
+//                response: Response<ResponseDataUser>
+//            ) {
+//                if (response.isSuccessful){
+//                    response.body()?.let {
+//                        listUser.addAll(it.data)
+//                    }
+//
+//                }
+//            }
+//        })
+//    }
 }

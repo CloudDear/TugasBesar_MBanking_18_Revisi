@@ -4,6 +4,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var vUsername: String
     lateinit var vPassword: String
     lateinit var mBundle: Bundle
+    lateinit var sharedPreferences: SharedPreferences
 
     private lateinit var binding: ActivityMainBinding
 
@@ -50,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
         getBundle()
         createNotificationChannel()
 
@@ -133,6 +136,13 @@ class MainActivity : AppCompatActivity() {
                             sendNotification2()
                         }else{
                             startActivity(Intent(this@MainActivity, HomeActivity::class.java))
+                            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                            editor.putInt("USERID", filterUser.get(0).idUser)
+                            editor.putString("NAME", filterUser.get(0).nameUser)
+                            editor.putString("EMAIL", filterUser.get(0).emailUser)
+                            editor.putString("PHONENUMBER", filterUser.get(0).noTelp)
+                            editor.putString("BIRTHDATE", filterUser.get(0).tglLahir)
+                            editor.apply()
                             sendNotification1()
                         }
                     }
