@@ -40,6 +40,11 @@ class UserProfile : AppCompatActivity() {
             startActivity(intent)
         }
 
+        btnLogout.setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
 
 
     }

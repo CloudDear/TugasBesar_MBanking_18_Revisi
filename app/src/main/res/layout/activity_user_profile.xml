@@ -24,6 +24,13 @@
             android:layout_marginLeft="320dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/ic_baseline_camera_alt_24"/>
+        <Button
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:id="@+id/btnLogout"
+            android:layout_marginRight="320dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_logout_24"/>
 
         <LinearLayout
             android:layout_width="match_parent"

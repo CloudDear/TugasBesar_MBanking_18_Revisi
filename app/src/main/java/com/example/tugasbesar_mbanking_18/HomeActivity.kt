@@ -43,10 +43,10 @@ class HomeActivity : AppCompatActivity() {
                     startActivity(intent)
 
                 }
-                R.id.logout -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                }
+//                R.id.logout -> {
+//                    val intent = Intent(this, MainActivity::class.java)
+//                    startActivity(intent)
+//                }
             }
             true
 
