@@ -118,18 +118,6 @@ class RegisterActivity : AppCompatActivity() {
 
                 sendNotification1()
 
-                val name: String = inputUsername.text.toString()
-                val email: String = inputEmail.text.toString()
-                val phoneNumber: String = inputNomorTelepon.text.toString()
-                val birthDate: String = inputTanggalLahir.text.toString()
-
-                val editor: SharedPreferences.Editor = sharedPreferences.edit()
-                editor.putString("NAME", name)
-                editor.putString("EMAIL", email)
-                editor.putString("PHONENUMBER", phoneNumber)
-                editor.putString("BIRTHDATE", birthDate)
-                editor.apply()
-
                 intent.putExtras(mBundle)
                 startActivity(intent)
             }
