@@ -16,9 +16,6 @@ android {
         versionCode 1
         versionName "1.0"
 
-        //Charts-kt.io
-        multiDexEnabled true
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -76,15 +73,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
-<<<<<<< HEAD
 
     //Leakcanary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
-
-    //Charts-kt.io
-    implementation 'io.data2viz.charts:core:1.1.0-eap1'
-    implementation 'io.data2viz.d2v:viz:0.8.12'
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
-=======
->>>>>>> parent of a6a6531 (Perpindahan letak logout)
 }
