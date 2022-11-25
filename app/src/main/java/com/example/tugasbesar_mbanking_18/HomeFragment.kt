@@ -29,6 +29,10 @@ class HomeFragment : Fragment() {
         btnLokasi.setOnClickListener{
             setupListener()
         }
+
+        btnChart.setOnClickListener{
+            setupListener()
+        }
     }
 
 
@@ -36,6 +40,15 @@ class HomeFragment : Fragment() {
             startActivity(
                 Intent(requireActivity().applicationContext, MapsActivity::class.java)
             )
+            startActivity(
+                Intent(requireActivity().applicationContext, ChartActivity::class.java)
+            )
     }
+
+//    fun setupList() {
+//        startActivity(
+//            Intent(requireActivity().applicationContext, ChartActivity::class.java)
+//        )
+//    }
 
 }

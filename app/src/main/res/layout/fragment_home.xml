@@ -22,6 +22,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/btnChart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="100dp"
+            android:backgroundTint="#D385F4"
+            android:text="Grafik Pengeluaran"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
