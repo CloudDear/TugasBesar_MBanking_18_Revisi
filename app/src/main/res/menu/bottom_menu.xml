@@ -16,8 +16,8 @@
         android:id="@+id/memo"
         android:icon="@drawable/ic_note_add_24"
         android:title="Memo" />
-<!--    <item-->
-<!--        android:id="@+id/logout"-->
-<!--        android:icon="@drawable/ic_logout_24"-->
-<!--        android:title="Logout" />-->
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_logout_24"
+        android:title="Logout" />
 </menu>
