@@ -11,6 +11,9 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
 
+        //PDF
+        maven { url 'https://jitpack.io' }
+
         //Charts-kt.io
         maven{
             url "https://maven.pkg.jetbrains.space/data2viz/p/maven/dev"
