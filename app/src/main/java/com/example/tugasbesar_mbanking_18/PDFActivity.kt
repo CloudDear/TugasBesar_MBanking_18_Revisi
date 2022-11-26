@@ -70,7 +70,7 @@ class PDFActivity : AppCompatActivity() {
         //ini berguna untuk akses writing ke storage hp kalian dalam mode download.
         //harus diketik jangan COPAS!!!!
         val pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString()
-        val file = File(pdfPath, "pdf_10784.pdf")
+        val file = File(pdfPath, "pdf_MBANKING.pdf")
         FileOutputStream(file)
 
         //inisialisasi pembuatan PDF

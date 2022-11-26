@@ -79,11 +79,11 @@ class MainActivity : AppCompatActivity() {
                 binding.inputLayoutPassword.setError("Password must be filled with text")
                 checkLogin = false
             }
-            getAllUser()
-//            if (username == vUsername && password == vPassword) checkLogin = true
-//            if (!checkLogin) return@OnClickListener
-//            val moveHome = Intent(this@MainActivity, HomeActivity::class.java)
-//            startActivity(moveHome)
+//            getAllUser()
+            if (username == vUsername && password == vPassword) checkLogin = true
+            if (!checkLogin) return@OnClickListener
+            val moveHome = Intent(this@MainActivity, HomeActivity::class.java)
+            startActivity(moveHome)
         })
 
         binding.textViewRegister.setOnClickListener{
