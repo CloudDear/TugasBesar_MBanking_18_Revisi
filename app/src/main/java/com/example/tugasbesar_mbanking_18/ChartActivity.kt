@@ -14,26 +14,26 @@ import io.data2viz.viz.VizContainerView
 class ChartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(CanadaChart(this))
+        setContentView(BankingChart(this))
     }
 }
 
-class CanadaChart(context: Context) : VizContainerView(context) {
+class BankingChart(context: Context) : VizContainerView(context) {
 
     private val chart: Chart<PopCount> = chart(canPop) {
         size = Size(vizSize, vizSize)
-        title = "Population of Canada 1851–2001 (Statistics Canada)"
+        title = "Pengeluaran tercatat MBanking 1851–2001 (Statistics Mbanking)"
 
-        // Create a discrete dimension for the year of the census
+        // Create a discrete dimension for the year of the outcome
         val year = discrete({ domain.year })
 
-        // Create a continuous numeric dimension for the population
-        val population = quantitative({ domain.population }) {
-            name = "Population of Canada (in millions)"
+        // Create a continuous numeric dimension for the outcome
+        val outcome = quantitative({ domain.outcome }) {
+            name = "Intensitas pengeluaran pada MBanking (in rupiahs)"
         }
 
         // Using a discrete dimension for the X-axis and a continuous one for the Y-axis
-        area(year, population)
+        area(year, outcome)
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -44,7 +44,7 @@ class CanadaChart(context: Context) : VizContainerView(context) {
 
 const val vizSize = 500.0
 
-data class PopCount(val year: Int, val population: Double)
+data class PopCount(val year: Int, val outcome: Double)
 
 val canPop = listOf(
     PopCount(1851, 2.436),
