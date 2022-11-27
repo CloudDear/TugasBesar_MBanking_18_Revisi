@@ -92,4 +92,10 @@ dependencies {
     implementation 'com.google.mlkit:barcode-scanning:17.0.2'
     //implementasi PDF Library OpenPDF
     implementation 'com.github.librepdf:openpdf:1.3.29'
+    //implementation FancyToaster
+    implementation 'io.github.shashank02051997:FancyToast:2.0.2'
+    //implementation lottie
+    implementation 'com.airbnb.android:lottie:3.4.1'
+
+
 }

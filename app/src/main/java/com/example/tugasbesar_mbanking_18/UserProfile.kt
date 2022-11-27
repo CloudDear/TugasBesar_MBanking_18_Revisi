@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+
 import kotlinx.android.synthetic.main.activity_user_profile.*
 
 class UserProfile : AppCompatActivity() {
@@ -14,6 +15,7 @@ class UserProfile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
+
 
         preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
         val name = preferences.getString("NAME", "")

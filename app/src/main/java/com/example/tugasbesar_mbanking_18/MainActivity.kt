@@ -21,6 +21,7 @@ import com.example.tugasbesar_mbanking_18.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_register.*
@@ -66,24 +67,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnLogin.setOnClickListener(View.OnClickListener {
-            var checkLogin = false
             val username: String = binding.inputLayoutUsername.getEditText()?.getText().toString()
             val password: String = binding.inputLayoutPassword.getEditText()?.getText().toString()
 
             if (username.isEmpty()) {
                 binding.inputLayoutUsername.setError("Username must be filled with text")
-                checkLogin = false
             }
 
             if (password.isEmpty()) {
                 binding.inputLayoutPassword.setError("Password must be filled with text")
-                checkLogin = false
             }
-//            getAllUser()
-            if (username == vUsername && password == vPassword) checkLogin = true
-            if (!checkLogin) return@OnClickListener
-            val moveHome = Intent(this@MainActivity, HomeActivity::class.java)
-            startActivity(moveHome)
+            getAllUser()
+//            if (username == vUsername && password == vPassword) checkLogin = true
+//            if (!checkLogin) return@OnClickListener
+//            val moveHome = Intent(this@MainActivity, HomeActivity::class.java)
+//            startActivity(moveHome)
         })
 
         binding.textViewRegister.setOnClickListener{
@@ -207,6 +205,8 @@ class MainActivity : AppCompatActivity() {
 
         val pendingIntent : PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
         val broadcastIntent : Intent = Intent( this, NotificationReceiver::class.java)
+        FancyToast.makeText(this,"Berhasil Login !",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,true).show()
+
         broadcastIntent.putExtra("toastMessage", binding.inputLayoutUsername.getEditText()?.getText().toString() +" sudah login")
         val actionIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
@@ -248,6 +248,7 @@ class MainActivity : AppCompatActivity() {
 
         val pendingIntent : PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
         val broadcastIntent : Intent = Intent( this, NotificationReceiver::class.java)
+        FancyToast.makeText(this,"Username dan Password Salah !",FancyToast.LENGTH_LONG,FancyToast.WARNING,true).show()
         broadcastIntent.putExtra("toastMessage","Masalah Login Terdeteksi")
         val actionIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 

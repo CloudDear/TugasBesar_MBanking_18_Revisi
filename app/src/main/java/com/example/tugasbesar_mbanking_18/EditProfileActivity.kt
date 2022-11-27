@@ -26,6 +26,7 @@ class EditProfileActivity : AppCompatActivity() {
 
         sharePref = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
 
+
         binding.buttonSaveProfile.setOnClickListener{
 
             val intent = Intent(this, UserProfile::class.java)
