@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RClient {
-    private const val BASE_URL = "http://10.53.8.173:80/ci4-apiserver-tubes/public/"
+    private const val BASE_URL = "http://192.168.1.5:8080/ci4-apiserver-tubes/public/"
     val instances : api by lazy {
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
