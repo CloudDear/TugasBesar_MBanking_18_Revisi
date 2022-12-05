@@ -36,29 +36,28 @@ class FormAddMemoActivityTest {
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         Thread.sleep(7000)
 
-        val materialButton1 = onView(
+        val materialButton = onView(
             allOf(
                 withId(R.id.btn_add), withText("Simpan Data"),
                 childAtPosition(
                     childAtPosition(
                         withId(android.R.id.content),
-                        1
+                        0
                     ),
-                    1
+                    3
                 ),
                 isDisplayed()
             )
         )
-        materialButton1.perform(click())
+        materialButton.perform(click())
         onView(isRoot()).perform(waitFor(3000))
-
 
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        Thread.sleep(7000)
+        Thread.sleep(5000)
 
-        val textInputEditText2 = onView(
+        val textInputEditText = onView(
             allOf(
                 withId(R.id.txt_id),
                 childAtPosition(
@@ -71,25 +70,22 @@ class FormAddMemoActivityTest {
                 isDisplayed()
             )
         )
-        textInputEditText2.perform(replaceText("001"), closeSoftKeyboard())
+        textInputEditText.perform(replaceText("1"), closeSoftKeyboard())
 
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        Thread.sleep(5000)
+        Thread.sleep(1000)
 
         val materialButton2 = onView(
             allOf(
                 withId(R.id.btn_add), withText("Simpan Data"),
                 childAtPosition(
-                    allOf(
+                    childAtPosition(
                         withId(android.R.id.content),
-                        childAtPosition(
-                            withClassName(Matchers.`is`("androidx.constraintlayout.widget.ConstraintLayout")),
-                            1
-                        )
+                        0
                     ),
-                    1
+                    3
                 ),
                 isDisplayed()
             )
@@ -102,7 +98,7 @@ class FormAddMemoActivityTest {
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         Thread.sleep(7000)
 
-        val textInputEditText3 = onView(
+        val textInputEditText2 = onView(
             allOf(
                 withId(R.id.txt_title),
                 childAtPosition(
@@ -110,12 +106,12 @@ class FormAddMemoActivityTest {
                         withId(android.R.id.content),
                         0
                     ),
-                    0
+                    1
                 ),
                 isDisplayed()
             )
         )
-        textInputEditText3.perform(replaceText("Judul"), closeSoftKeyboard())
+        textInputEditText2.perform(replaceText("a"), closeSoftKeyboard())
 
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
@@ -126,14 +122,11 @@ class FormAddMemoActivityTest {
             allOf(
                 withId(R.id.btn_add), withText("Simpan Data"),
                 childAtPosition(
-                    allOf(
+                    childAtPosition(
                         withId(android.R.id.content),
-                        childAtPosition(
-                            withClassName(Matchers.`is`("androidx.constraintlayout.widget.ConstraintLayout")),
-                            1
-                        )
+                        0
                     ),
-                    1
+                    3
                 ),
                 isDisplayed()
             )
@@ -144,9 +137,9 @@ class FormAddMemoActivityTest {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        Thread.sleep(5000)
+        Thread.sleep(7000)
 
-        val textInputEditText4 = onView(
+        val textInputEditText3 = onView(
             allOf(
                 withId(R.id.txt_body),
                 childAtPosition(
@@ -154,12 +147,12 @@ class FormAddMemoActivityTest {
                         withId(android.R.id.content),
                         0
                     ),
-                    0
+                    2
                 ),
                 isDisplayed()
             )
         )
-        textInputEditText4.perform(replaceText("Isi"), closeSoftKeyboard())
+        textInputEditText3.perform(replaceText("b"), closeSoftKeyboard())
 
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
@@ -170,14 +163,11 @@ class FormAddMemoActivityTest {
             allOf(
                 withId(R.id.btn_add), withText("Simpan Data"),
                 childAtPosition(
-                    allOf(
+                    childAtPosition(
                         withId(android.R.id.content),
-                        childAtPosition(
-                            withClassName(Matchers.`is`("androidx.constraintlayout.widget.ConstraintLayout")),
-                            1
-                        )
+                        0
                     ),
-                    1
+                    3
                 ),
                 isDisplayed()
             )
@@ -203,17 +193,18 @@ class FormAddMemoActivityTest {
             }
         }
     }
-    fun waitFor(delay: Long): ViewAction? {
-        return object  : ViewAction {
+
+    fun waitFor(delay : Long): ViewAction? {
+        return object : ViewAction {
             override fun getConstraints(): Matcher<View> {
                 return isRoot()
             }
 
             override fun getDescription(): String {
-                return "wait for " + delay + "milliseconds"
+                return "wait for " +delay + " miliseconds"
             }
 
-            override fun perform(uiController: UiController, view: View?) {
+            override fun perform(uiController: UiController, view: View) {
                 uiController.loopMainThreadForAtLeast(delay)
             }
         }
