@@ -81,7 +81,7 @@ class RegisterActivity : AppCompatActivity() {
                         Toast.LENGTH_LONG).show()
                         finish()
                     }else{
-                        val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
+//                        val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
 
                     }
                 }
@@ -106,6 +106,11 @@ class RegisterActivity : AppCompatActivity() {
             if(nomorTelepon.isEmpty()) {
                 binding.inputNomorTelepon.setError("Nomor Telepon must be filled with text")
             }else{
+                //RCLIENT
+                //BUNDLE
+                //RETURN jsobject
+                //intent
+                //startactivity
                 mBundle.putString("username", binding.inputUsername.editableText.toString())
 
                 mBundle.putString("password", binding.inputPassword.editableText.toString())
