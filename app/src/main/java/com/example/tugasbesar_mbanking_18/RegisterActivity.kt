@@ -83,6 +83,22 @@ class RegisterActivity : AppCompatActivity() {
                     }else{
                         val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
 
+                        if(username.isEmpty()){
+                            inputUsername.setError(jsonObj.getString("message1"))
+                        }
+                        if(password.isEmpty()){
+                            inputPassword.setError(jsonObj.getString("message2"))
+                        }
+                        if(email.isEmpty()){
+                            inputEmail.setError(jsonObj.getString("message3"))
+                        }
+                        if(tanggalLahir.isEmpty()){
+                            inputTanggalLahir.setError(jsonObj.getString("message4"))
+                        }
+                        if(nomorTelepon.isEmpty()){
+                            inputNomorTelepon.setError(jsonObj.getString("message5"))
+                        }
+                        Toast.makeText(applicationContext,"Belum Berhasik Registrasi", Toast.LENGTH_LONG).show()
                     }
                 }
 
@@ -91,21 +107,8 @@ class RegisterActivity : AppCompatActivity() {
                 }
             })
 
-            if(username.isEmpty()) {
-                binding.inputUsername.setError("Username must be filled with text")
-            }
-            if(password.isEmpty()){
-                binding.inputPassword.setError("Password must be filled with text")
-            }
-            if(email.isEmpty()) {
-                binding.inputEmail.setError("Email must be filled with text")
-            }
-            if(tanggalLahir.isEmpty()) {
-                binding.inputTanggalLahir.setError("Tanggal Lahir must be filled with text")
-            }
-            if(nomorTelepon.isEmpty()) {
-                binding.inputNomorTelepon.setError("Nomor Telepon must be filled with text")
-            }else{
+            if(username.isNotEmpty() && password.isNotEmpty() && email.isNotEmpty() && tanggalLahir.isNotEmpty() && nomorTelepon.isNotEmpty()) {
+
                 mBundle.putString("username", binding.inputUsername.editableText.toString())
 
                 mBundle.putString("password", binding.inputPassword.editableText.toString())
@@ -121,6 +124,7 @@ class RegisterActivity : AppCompatActivity() {
                 intent.putExtras(mBundle)
                 startActivity(intent)
             }
+
         }
 
     }
