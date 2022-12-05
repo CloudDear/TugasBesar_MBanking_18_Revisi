@@ -72,10 +72,14 @@ class MainActivity : AppCompatActivity() {
 
             if (username.isEmpty()) {
                 binding.inputLayoutUsername.setError("Username must be filled with text")
+            }else{
+                binding.inputLayoutUsername.setError(null)
             }
 
             if (password.isEmpty()) {
                 binding.inputLayoutPassword.setError("Password must be filled with text")
+            }else{
+                binding.inputLayoutPassword.setError(null)
             }
             getAllUser()
 //            if (username == vUsername && password == vPassword) checkLogin = true
