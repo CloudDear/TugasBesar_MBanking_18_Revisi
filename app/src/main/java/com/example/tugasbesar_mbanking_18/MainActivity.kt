@@ -55,27 +55,23 @@ class MainActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener(View.OnClickListener {
             val username: String = binding.inputLayoutUsername.getEditText()?.getText().toString()
             val password: String = binding.inputLayoutPassword.getEditText()?.getText().toString()
-            var checkLogin = false
+
             if (username.isEmpty()) {
                 binding.inputLayoutUsername.setError("Username must be filled with text")
-                checkLogin = false
             }else{
                 binding.inputLayoutUsername.setError(null)
-                checkLogin = false
             }
 
             if (password.isEmpty()) {
                 binding.inputLayoutPassword.setError("Password must be filled with text")
-                checkLogin = false
             }else{
                 binding.inputLayoutPassword.setError(null)
-                checkLogin = false
             }
-//            getAllUser()
-            if (username == vUsername && password == vPassword) checkLogin = true
-            if (!checkLogin) return@OnClickListener
-            val moveHome = Intent(this@MainActivity, HomeActivity::class.java)
-            startActivity(moveHome)
+            getAllUser()
+//            if (username == vUsername && password == vPassword) checkLogin = true
+//            if (!checkLogin) return@OnClickListener
+//            val moveHome = Intent(this@MainActivity, HomeActivity::class.java)
+//            startActivity(moveHome)
         })
 
         binding.textViewRegister.setOnClickListener{
