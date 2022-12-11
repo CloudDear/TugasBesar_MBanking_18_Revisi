@@ -1,6 +1,7 @@
 package com.example.tugasbesar_mbanking_18
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tugasbesar_mbanking_18.entity.Transaksi
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_transaksi.*
 
 
 private const val ARG_PARAM1 = "param1"
@@ -40,5 +43,13 @@ class FragmentTransaksi : Fragment() {
 
 
         rvTransaksi.adapter = adapter
+        btn_pengeluaran.setOnClickListener{
+            setupListener()
+        }
+    }
+    fun setupListener() {
+        startActivity(
+            Intent(requireActivity().applicationContext, ChartActivity::class.java)
+        )
     }
 }

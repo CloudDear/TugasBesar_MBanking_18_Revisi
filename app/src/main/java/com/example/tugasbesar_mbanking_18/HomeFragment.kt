@@ -30,18 +30,13 @@ class HomeFragment : Fragment() {
             setupListener()
         }
 
-        btnChart.setOnClickListener{
-            setupListener()
-        }
+
     }
 
 
     fun setupListener() {
             startActivity(
                 Intent(requireActivity().applicationContext, MapsActivity::class.java)
-            )
-            startActivity(
-                Intent(requireActivity().applicationContext, ChartActivity::class.java)
             )
     }
 
