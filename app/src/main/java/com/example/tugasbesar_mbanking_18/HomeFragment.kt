@@ -30,6 +30,10 @@ class HomeFragment : Fragment() {
             setupListener()
         }
 
+        btn_faq.setOnClickListener{
+            setupListener1()
+        }
+
 
     }
 
@@ -38,6 +42,11 @@ class HomeFragment : Fragment() {
             startActivity(
                 Intent(requireActivity().applicationContext, MapsActivity::class.java)
             )
+    }
+    fun setupListener1() {
+        startActivity(
+            Intent(requireActivity().applicationContext, FaqActivity::class.java)
+        )
     }
 
 //    fun setupList() {

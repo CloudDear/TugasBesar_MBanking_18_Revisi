@@ -4,26 +4,24 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.tugasbesar_mbanking_18.databinding.ActivityFormEditMemoBinding
+import com.example.tugasbesar_mbanking_18.databinding.ActivityFormEditFaqBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
-import kotlin.collections.ArrayList
 
-class FormEditMemoActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityFormEditMemoBinding
+class FormEditFaqActivity : AppCompatActivity() {
+    private lateinit var binding : ActivityFormEditFaqBinding
     private var b:Bundle? = null
-    private val listMemo = ArrayList<MemoData>()
+    private val listFaq = ArrayList<FaqData>()
     @SuppressLint("RestrictedApi")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityFormEditMemoBinding.inflate(layoutInflater)
+        binding = ActivityFormEditFaqBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         supportActionBar?.setDefaultDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Form Edit Memo"
+        supportActionBar?.title = "Form Edit Faq"
         b = intent.extras
         val id = b?.getString("id")
 
@@ -33,7 +31,7 @@ class FormEditMemoActivity : AppCompatActivity() {
                 val title = txtEditTitle.text.toString()
                 val body = txtEditBody.text.toString()
 
-                RClient.instances.updateData(id,title,body).enqueue(object :
+                RClient.instances.updateDataFaq(id,title,body).enqueue(object :
                     Callback<ResponseCreate> {
                     override fun onResponse(
                         call: Call<ResponseCreate>,
@@ -54,23 +52,23 @@ class FormEditMemoActivity : AppCompatActivity() {
     }
 
     fun getDetailData(id:String) {
-        RClient.instances.getData(id).enqueue(object :
-            Callback<ResponseDataMemo> {
+        RClient.instances.getDataFaq(id).enqueue(object :
+            Callback<ResponseDataFaq> {
             override fun onResponse(
-                call: Call<ResponseDataMemo>,
-                response: Response<ResponseDataMemo>
+                call: Call<ResponseDataFaq>,
+                response: Response<ResponseDataFaq>
             ) {
                 if(response.isSuccessful){
                     response.body()?.let {
-                        listMemo.addAll(it.data) }
+                        listFaq.addAll(it.data) }
                     with(binding) {
-                        txtId.setText(listMemo[0].id)
-                        txtEditTitle.setText(listMemo[0].title)
-                        txtEditBody.setText(listMemo[0].body)
+                        txtId.setText(listFaq[0].id)
+                        txtEditTitle.setText(listFaq[0].title)
+                        txtEditBody.setText(listFaq[0].body)
                     }
                 }
             }
-            override fun onFailure(call: Call<ResponseDataMemo>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseDataFaq>, t: Throwable) {
             }
         })
     }

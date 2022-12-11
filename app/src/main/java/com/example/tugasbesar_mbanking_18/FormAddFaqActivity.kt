@@ -3,18 +3,18 @@ package com.example.tugasbesar_mbanking_18
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.tugasbesar_mbanking_18.databinding.ActivityFormAddMemoBinding
+import com.example.tugasbesar_mbanking_18.databinding.ActivityFormAddFaqBinding
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FormAddMemoActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityFormAddMemoBinding
+class FormAddFaqActivity : AppCompatActivity() {
+    private lateinit var binding : ActivityFormAddFaqBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityFormAddMemoBinding.inflate(layoutInflater)
+        binding = ActivityFormAddFaqBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.btnAdd.setOnClickListener {
             saveData()
@@ -27,7 +27,7 @@ class FormAddMemoActivity : AppCompatActivity() {
             val title= txtTitle.text.toString()
             val body = txtBody.text.toString()
 
-            RClient.instances.createData(id,title,body).enqueue(object :
+            RClient.instances.createDataFaq(id,title,body).enqueue(object :
                 Callback<ResponseCreate> {
                 override fun onResponse(
                     call: Call<ResponseCreate>,
@@ -50,18 +50,4 @@ class FormAddMemoActivity : AppCompatActivity() {
             })
         }
     }
-//    private fun dateToString(year: Int, month: Int, dayofMonth:
-//    Int): String {
-//        return year.toString()+"-"+(month+1)+"-"+dayofMonth.toString()
-//    }
-//    private fun dateDialog(context: Context, datePicker:
-//    DatePickerDialog.OnDateSetListener): DatePickerDialog {
-//        val calender = Calendar.getInstance()
-//        return DatePickerDialog(
-//            context, datePicker,
-//            calender[Calendar.YEAR],
-//            calender[Calendar.MONTH],
-//            calender[Calendar.DAY_OF_MONTH],
-//        )
-//    }
 }

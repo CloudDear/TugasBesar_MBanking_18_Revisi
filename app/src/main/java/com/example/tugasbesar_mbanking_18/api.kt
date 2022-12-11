@@ -57,4 +57,27 @@ interface api {
         @Field("tglLahir") tglLahir:String?,
     ): Call<ResponseCreate>
 
+    // FAQ
+    @GET("faq/{cari}")
+    fun getDataFaq(@Path("cari") cari:String? = null): Call<ResponseDataFaq>
+
+    @FormUrlEncoded
+    @POST("faq")
+    fun createDataFaq(
+        @Field("idfaq") id:String?,
+        @Field("titlefaq") title:String?,
+        @Field("bodyfaq") body:String?,
+    ): Call<ResponseCreate>
+
+    @DELETE("faq/{idfaq}")
+    fun deleteDataFaq(@Path("idfaq")idfaq: String?): Call<ResponseCreate>
+
+    @FormUrlEncoded
+    @PUT("faq/{idfaq}")
+    fun updateDataFaq(
+        @Path("idfaq") idfaq:String?,
+        @Field("titlefaq") titlefaq:String?,
+        @Field("bodyfaq") bodyfaq:String?,
+    ): Call<ResponseCreate>
+
 }
